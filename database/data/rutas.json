@@ -1,0 +1,94 @@
+[
+    {
+        "permission": "master/rutas",
+        "name": "rutas"
+    },
+    {
+        "permission": "master/roles",
+        "name": "roles.index"
+    },
+    {
+        "permission": "master/roles/create",
+        "name": "roles.create"
+    },
+    {
+        "permission": "master/roles",
+        "name": "roles.store"
+    },
+    {
+        "permission": "master/roles/{role}",
+        "name": "roles.show"
+    },
+    {
+        "permission": "master/roles/{role}/edit",
+        "name": "roles.edit"
+    },
+    {
+        "permission": "master/roles/{role}",
+        "name": "roles.update"
+    },
+    {
+        "permission": "master/roles/{role}",
+        "name": "roles.destroy"
+    },
+    {
+        "permission": "master/permissions",
+        "name": "permissions.index"
+    },
+    {
+        "permission": "master/permissions/create",
+        "name": "permissions.create"
+    },
+    {
+        "permission": "master/permissions",
+        "name": "permissions.store"
+    },
+    {
+        "permission": "master/permissions/{permission}",
+        "name": "permissions.show"
+    },
+    {
+        "permission": "master/permissions/{permission}/edit",
+        "name": "permissions.edit"
+    },
+    {
+        "permission": "master/permissions/{permission}",
+        "name": "permissions.update"
+    },
+    {
+        "permission": "master/permissions/{permission}",
+        "name": "permissions.destroy"
+    },
+    {
+        "permission": "master/users",
+        "name": "users.index"
+    },
+    {
+        "permission": "master/users/create",
+        "name": "users.create"
+    },
+    {
+        "permission": "master/users",
+        "name": "users.store"
+    },
+    {
+        "permission": "master/users/{user}",
+        "name": "users.show"
+    },
+    {
+        "permission": "master/users/{user}/edit",
+        "name": "users.edit"
+    },
+    {
+        "permission": "master/users/{user}",
+        "name": "users.update"
+    },
+    {
+        "permission": "master/users/{user}",
+        "name": "users.destroy"
+    },
+    {
+        "permission": "dashboard",
+        "name": "dashboard"
+    }
+]
