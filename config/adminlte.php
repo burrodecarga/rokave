@@ -257,7 +257,7 @@ return [
         [
             'text' => 'rutas',
             'route'  => 'rutas',
-            'icon' => 'fas fa-fw fa-path',
+            'icon' => 'fas fa-fw fa-route',
         ],
         [
             'text' => 'roles',
@@ -273,6 +273,11 @@ return [
             'text' => 'users',
             'route'  => 'users.index',
             'icon' => 'fas fa-fw fa-users',
+        ],
+        [
+            'text' => 'condominios',
+            'route'  => 'condominios.index',
+            'icon' => 'fas fa-fw fa-building',
         ],
         [
             'text' => 'profile',

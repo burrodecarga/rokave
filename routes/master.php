@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Master\CondominioController;
 use App\Http\Controllers\Master\HomeController;
 use App\Http\Controllers\Master\RoleController;
 use App\Http\Controllers\Master\PermissionController;
@@ -14,6 +15,8 @@ Route::get('rutas', [HomeController::class,'rutas'])->name('rutas');
 Route::resource('roles', RoleController::class)->names('roles');
 Route::resource('permissions', PermissionController::class)->names('permissions');
 Route::resource('users', UserController::class)->names('users');
+Route::resource('condominios', CondominioController::class)->names('condominios');
+
 
 
 
