@@ -39,7 +39,9 @@
                                     {{$condominio->administrador->name}}
                                     @endif
                                 </td>
-                                <td scope="row" class="text-capitalize">
+                                <td  class="text-center">
+
+
                                     <a href="{{route('condominios.show',$condominio->id)}}"
                                         class="btn btn-outline-primary text-capitalize" data-toggle="tooltip"
                                         data-placement="top" title="{{__('show record')}} ">
@@ -60,6 +62,7 @@
                                         <button type="submit" class="btn"> <i class="fa fa-trash-alt btn btn-danger btn-outline-warnig"
                                                 aria-hidden="true"></i></button>
                                      </form>
+                                     <hr>
 
                                      <form
                                         action="{{route('socials.create')}}"
@@ -89,8 +92,7 @@
                                                 ></i></button>
                                      </form>
 
-
-                                     {{-- //// --}}
+                                     <hr>
 
                                      <form
                                      action="{{route('banks.create')}}"
@@ -99,7 +101,7 @@
                                      <input type="hidden" name="condominio_id" value="{{$condominio->id}}">
 
                                      <button type="submit" class="btn btn-outline-primary">
-                                         <i class="fa fa-building"
+                                         <i class="fa fa-comments-dollar"
                                              aria-hidden="true"
                                              data-toggle="tooltip"
                                      data-placement="top" title="{{__('add Bank')}} "
@@ -113,12 +115,49 @@
                                      <input type="hidden" name="condominio_id" value="{{$condominio->id}}">
 
                                      <button type="submit" class="btn btn-outline-danger">
-                                         <i class="fa fa-building"
+                                         <i class="fa fa-comments-dollar"
                                              aria-hidden="true"
                                              data-toggle="tooltip"
-                                     data-placement="top" title="{{__('edit Bank')}} "
+                                     data-placement="top" title="{{__('edit Banks')}} "
                                              ></i></button>
                                   </form>
+
+                                  <hr>
+
+                                  <form
+                                     action="{{route('interests.create')}}"
+                                     class="btn">
+
+                                     <input type="hidden" name="condominio_id" value="{{$condominio->id}}">
+
+                                     <button type="submit" class="btn btn-outline-primary">
+                                         <i class="fa fa-chart-bar"
+                                             aria-hidden="true"
+                                             data-toggle="tooltip"
+                                     data-placement="top" title="{{__('add interest')}} "
+                                             ></i></button>
+                                  </form>
+
+                                  <form
+                                     action="{{route('interests.index')}}"
+                                     class="btn">
+
+                                     <input type="hidden" name="condominio_id" value="{{$condominio->id}}">
+
+                                     <button type="submit" class="btn btn-outline-danger">
+                                         <i class="fa fa-chart-bar"
+                                             aria-hidden="true"
+                                             data-toggle="tooltip"
+                                     data-placement="top" title="{{__('edit interests')}} "
+                                             ></i></button>
+                                  </form>
+                                  <hr>
+                                  <a href="{{route('condominios.apartments.index',$condominio->id)}}"
+                                    class="btn btn-outline-success text-capitalize" data-toggle="tooltip"
+                                    data-placement="top" title="{{__('List of Apartments')}} ">
+
+                                    <i class="fa fa-boxes" aria-hidden="true"></i>
+                                </a>
 
 
                                  </td>

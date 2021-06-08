@@ -3,45 +3,45 @@
 @section('content')
 
 <div class="container">
-    <div class="row w-75 mx-auto">
+    <div class="row w-50 mx-auto">
         <div class="col-12 mx-auto">
             <div class="card card-table" style="width:100%">
                 <div class="card-header card-header-table">
-                    <h5 class="display-8 text-center mt-2 p-0 text-uppercase text-primary">{{__( $condominio->name.'  List of banks Media  ')}} </h5>
+                    <h5 class="display-8 text-center mt-2 p-0 text-uppercase text-primary">{{__( $condominio->name.'  List of interest  ')}} </h5>
                 </div>
                 <div class="card-body card-body-table">
                     @include('partials.success')
                     <table class="table table-striped table-bordered text-sm" style="width:100%" id="condominios">
                         <thead>
                             <tr>
-                                <th width="25%">Bank</th>
-                                <th width="25%">Ctta</th>
-                                <th width="25%">Owner</th>
-                                <th width="25%" class="text-center">{{__('Acction')}}</th>
+                                <th width="30%">Interest</th>
+                                <th width="30%">Date</th>
+
+                                <th width="40%" class="text-center">{{__('Acction')}}</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($banks as $bank )
+                            @foreach ($interests as $interest )
                                 <tr>
-                                <td>{{$bank->bank}}</td>
-                                <td>{{$bank->ctta}}</td>
-                                <td>{{$bank->owner}}</td>
+                                <td>{{$interest->value}} %</td>
+                                <td>{{$interest->date}}</td>
+
                                 <td class="mx-auto flex">
-                                    <a href="{{route('banks.edit',$bank->id)}}"
+                                    <a href="{{route('interests.edit',$interest->id)}}"
                                         class="btn btn-outline-success text-capitalize" data-toggle="tooltip"
                                         data-placement="top" title="{{__('edit record')}} ">
 
                                         <i class="fa fa-wrench" aria-hidden="true"></i>
                                     </a>
-                                    <form id="delete-form{{$bank->id}}"
-                                    action="{{route('banks.destroy',$bank->id)}}" method="POST"
+                                    <form id="delete-form{{$interest->id}}"
+                                    action="{{route('interests.destroy',$interest->id)}}" method="POST"
                                     class="borrar btn">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn"> <i class="fa fa-trash-alt btn btn-danger btn-outline-warnig"
                                             aria-hidden="true"
                                             data-toggle="tooltip"
-                                        data-placement="top" title="{{__('delete bank Media')}} "
+                                        data-placement="top" title="{{__('delete interest Media')}} "
                                             ></i></button>
                                  </form>
                              </td>
@@ -95,7 +95,7 @@
                 "infoFiltered": ""
             },
             "columnDefs": [{
-                "targets": [3],
+                "targets": [2],
                 "orderable": false
             }],
 

@@ -8,7 +8,7 @@
         <div class="col-md-7 mx-auto">
             <div class="card card-table" style="width:100%">
                 <div class="card-header card-header-table">
-                    <h5 class="display-6 text-center mt-2 p-0 text-uppercase text-primary">{{__($title)}} </h5>
+                    <h5 class="display-6 text-center mt-2 p-0 text-uppercase text-primary">{{__('Apartments')}} </h5>
                 </div>
                 <div class="card-body card-body-table">
                     <div class="row">
@@ -24,7 +24,7 @@
                         <table class="table table-striped table-bordered" style="width:100%" id="roles">
                             <thead>
                                 <tr>
-                                    <th width="70%">Rol</th>
+                                    <th width="70%"></th>
                                     <th width="30%" class="text-center">{{__('Acction')}}</th>
                                 </tr>
                             </thead>

@@ -128,10 +128,26 @@
         </div>
     </div>
 
-    <div class="interes  col-12 card">
-        <div class="card-header"><i class="fas fa-chart-bar"></i>Intereses de Mora</div>
-        <div class="card-body">
+    <div class="redes  col-12  card" x-data="{open: false }">
+        <div class="card-header cursor-pointer row" role="button" @click="open = ! open"
+            @click.away="open=false">
+            <div class="col-md-6">
+                 <a class="bg-info p-2 rounded float-left">
+                     <i class="fas fa-chart-bar" title="Ocultar/Mostrar lista"></i>
+                    <span  class="m-auto">
+                        Interes de Mora
+                    </span>
+            </a>
+            </div>
+            </div>
 
+
+        <div class="card-body " x-show="open">
+            <ul class="list-group my-4">
+                @foreach ($condominio->interests as $interest)
+                <li class="list-group-item list-group-item-success">{{$interest->value.'  : '.$interest->date}}</li>
+                @endforeach
+                </ul>
         </div>
     </div>
 </div>

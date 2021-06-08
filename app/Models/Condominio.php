@@ -31,4 +31,8 @@ class Condominio extends Model
     public function banks(){
         return $this->hasMany(Bank::class);
     }
+
+    public function interests(){
+        return $this->hasMany(Interest::class);
+    }
 }

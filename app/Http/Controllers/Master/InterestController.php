@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Master;
 
 use App\Http\Controllers\Controller;
-use App\Models\Bank;
 use App\Models\Condominio;
+use App\Models\Interest;
 use Illuminate\Http\Request;
 
-class BankController extends Controller
+class InterestController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,9 +18,10 @@ class BankController extends Controller
     {
         $request->validate(['condominio_id'=>'required']);
         $condominio = Condominio::find($request->condominio_id);
-        $banks = $condominio->banks;
-        return view('master.banks.index',compact('condominio','banks',));
+        $interests = $condominio->interests()->orderBy('id','desc')->get();
+        return view('master.interests.index',compact('condominio','interests',));
     }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -29,8 +30,8 @@ class BankController extends Controller
     public function create(Request $request)
     {
         $condominio_id = $request->condominio_id;
-        $bank = new Bank();
-        return view('master.banks.create',compact('condominio_id','bank'));
+        $interest = new Interest();
+        return view('master.interests.create',compact('condominio_id','interest'));
     }
 
     /**
@@ -41,13 +42,10 @@ class BankController extends Controller
      */
     public function store(Request $request)
     {
-      $request->validate(['ctta'=>'required','bank'=>'required','owner'=>'required','condominio_id'  =>'required']);
-      $bank = new Bank($request->all());
-      $bank->save();
-      return redirect()->route('condominios.edit',$request->condominio_id)->with('success', 'Banco ' . $bank->bank .' - ctta : '.$bank->ctta.'  creado exitosamente');
-
-
-    }
+      $request->validate(['value'=>'required|numeric','date'=>'required|date']);
+      $interest = new Interest($request->all());
+      $interest->save();
+      return redirect()->route('condominios.edit',$request->condominio_id)->with('success', 'Interes de Mora ' . $interest->interest .' - vigencia : '.$interest->date.'  creado exitosamente');}
 
     /**
      * Display the specified resource.
@@ -66,7 +64,15 @@ class BankController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    
+    public function edit(Interest $interest)
+    {
+       $condominio = $interest->condominio;
+       $condominio;
+
+        return view('master.interests.edit',compact('interest','condominio'));
+    }
+
+
     /**
      * Update the specified resource in storage.
      *
@@ -74,14 +80,13 @@ class BankController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Bank $bank)
+    public function update(Request $request, Interest $interest)
     {
-        $request->validate(['ctta'=>'required','bank'=>'required','owner'=>'required',]);
-        $bank->update($request->all());
-        $bank->save();
-        $condominio = $bank->condominio;
+        $request->validate(['value'=>'required|numeric','date'=>'required|date']);
+        $interest->update($request->all());
+        $interest->save();
+        return redirect()->route('condominios.edit',$request->condominio_id)->with('success', 'Interes de Mora ' . $interest->interest .' - vigencia : '.$interest->date.'  actualizado exitosamente');
 
-        return redirect('/master/banks?condominio_id='.$condominio->id)->with('success', 'Banco ' . $bank->bank .' - ctta : '.$bank->ctta.'  creado exitosamente');
     }
 
     /**
@@ -90,10 +95,9 @@ class BankController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Bank $bank)
+    public function destroy(Interest $interest)
     {
-
-        $bank->delete();
-        return redirect('/master')->with('success', 'Banco ' . $bank->bank .' - ctta : '.$bank->ctta.'  Eliminado exitosamente');
+       $interest->delete();
+       return redirect('/master')->with('success', 'Interes ' . $interest->value .' % - date : '.$interest->date.'  Eliminado exitosamente');
     }
 }
