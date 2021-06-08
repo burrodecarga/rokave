@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Master;
 
 use App\Http\Controllers\Controller;
+use App\Models\Apartment;
 use App\Models\Condominio;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class CondominioApartmentController extends Controller
@@ -16,7 +18,7 @@ class CondominioApartmentController extends Controller
     public function index(Condominio $condominio)
     {
         $apartments = $condominio->apartments;
-        return view('master.condominios.apartments.index', compact($apartments));
+        return view('master.condominios.apartments.index', compact('condominio','apartments'));
     }
 
     /**
@@ -24,9 +26,11 @@ class CondominioApartmentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Condominio $condominio)
     {
-        //
+        $apartment = new Apartment();
+        $users = User::orderBy('name','asc')->get();
+        return view('master.condominios.apartments.create', compact('condominio','apartment','users'));
     }
 
     /**
@@ -35,9 +39,20 @@ class CondominioApartmentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request,Condominio $condominio)
     {
-        //
+        $request->validate([
+          'name' => 'required',
+          'address' => 'required',
+          'alicuota' =>'required',
+          'area' => 'required',
+          'user_id' => 'required',
+          'phone' => 'required'
+      ]);
+
+      $condominio->apartments()->create($request->all());
+
+      return redirect()->route('condominios-apartments.index',$condominio->id)->with('success', 'Condominio ' . $condominio->name . ' creado exitosamente');
     }
 
     /**
@@ -46,9 +61,9 @@ class CondominioApartmentController extends Controller
      * @param  \App\Models\Condominio  $condominio
      * @return \Illuminate\Http\Response
      */
-    public function show(Condominio $condominio)
+    public function show(Condominio $condominio,Apartment $apartment)
     {
-        //
+        return view('master.condominios.apartments.show', compact('condominio','apartment'));
     }
 
     /**
@@ -57,9 +72,10 @@ class CondominioApartmentController extends Controller
      * @param  \App\Models\Condominio  $condominio
      * @return \Illuminate\Http\Response
      */
-    public function edit(Condominio $condominio)
+    public function edit(Condominio $condominio,Apartment $apartment)
     {
-        //
+        $users = User::orderBy('name','asc')->get();
+        return view('master.condominios.apartments.edit', compact('condominio','apartment','users'));
     }
 
     /**
@@ -69,9 +85,22 @@ class CondominioApartmentController extends Controller
      * @param  \App\Models\Condominio  $condominio
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Condominio $condominio)
+    public function update(Request $request, Condominio $condominio,Apartment $apartment)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'address' => 'required',
+            'alicuota' =>'required',
+            'area' => 'required',
+            'user_id' => 'required',
+            'phone' => 'required'
+        ]);
+
+        $apartment->update($request->all());
+        $apartment->save();
+
+        return redirect()->route('condominios-apartments.index',$condominio->id)->with('success', 'Condominio ' . $condominio->name . ' creado exitosamente');
+
     }
 
     /**
@@ -80,8 +109,10 @@ class CondominioApartmentController extends Controller
      * @param  \App\Models\Condominio  $condominio
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Condominio $condominio)
+    public function destroy(Condominio $condominio,Apartment $apartment)
     {
-        //
+      $apartment->delete();
+      return redirect()->route('condominios-apartments.index',$condominio->id)->with('success', 'Apartamento ' . $apartment->name . ' eliminado exitosamente');
+
     }
 }

@@ -76,4 +76,8 @@ class User extends Authenticatable
     public function condominios(){
       return $this->hasMany(Condominio::class);
     }
+
+    public function apartments(){
+        return $this->hasMany(Apartment::class);
+    }
 }

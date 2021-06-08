@@ -152,7 +152,7 @@
                                              ></i></button>
                                   </form>
                                   <hr>
-                                  <a href="{{route('condominios.apartments.index',$condominio->id)}}"
+                                  <a href="{{route('condominios-apartments.index',$condominio)}}"
                                     class="btn btn-outline-success text-capitalize" data-toggle="tooltip"
                                     data-placement="top" title="{{__('List of Apartments')}} ">
 
@@ -179,6 +179,8 @@
 @stop
 
 @section('js')
+<script src="{{asset('vendor/sweetalert2/sweetalert2.all.js')}}" defer></script>
+
 <script>
     document.addEventListener('DOMContentLoaded', function (){
         $(() => {

@@ -58,7 +58,5 @@
         <input type="file" name="image" id="file" class="form-control b-0 p-1">
     </div>
 
-    <div class="form-group col-md-12">
-        <input name="guardar" id="guardar" class="btn btn-success float-right" type="submit" value="guardar">
-    </div>
+
 </div>

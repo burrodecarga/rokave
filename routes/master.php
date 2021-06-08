@@ -25,7 +25,7 @@ Route::resource('brands', BrandController::class)->names('brands');
 Route::resource('socials', SocialController::class)->names('socials');
 Route::resource('banks', BankController::class)->names('banks');
 Route::resource('interests', InterestController::class)->names('interests');
-Route::resource('condominios.apartments', CondominioApartmentController::class)->names('condominios.apartments');
+Route::resource('condominios.apartments', CondominioApartmentController::class)->names('condominios-apartments');
 
 
 
