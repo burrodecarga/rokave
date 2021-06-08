@@ -2,7 +2,7 @@
 
 @section('content')
  <div class="w-75 mx-auto">
-    <form action="{{route('brands.store')}}" method="POST">
+    <form action="{{route('socials.store')}}" method="POST">
         @csrf
         @method('POST')
         <input type="hidden" name="condominio_id" value="{{$condominio_id}}">

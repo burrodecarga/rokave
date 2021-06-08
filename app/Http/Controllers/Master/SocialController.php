@@ -8,7 +8,7 @@ use App\Models\Condominio;
 use App\Models\Social;
 use Illuminate\Http\Request;
 
-class BrandController extends Controller
+class SocialController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,9 +20,8 @@ class BrandController extends Controller
         $request->validate(['condominio_id'=>'required']);
         $condominio = Condominio::find($request->condominio_id);
         $socials = $condominio->socials;
-        return view('master.brands.index',compact('condominio','socials',));
+        return view('master.socials.index',compact('condominio','socials',));
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -30,10 +29,9 @@ class BrandController extends Controller
      */
     public function create(Request $request)
     {
-
         $condominio_id = $request->condominio_id;
         $brands = Brand::orderBy('name')->get();
-        return view('master.brands.create',compact('brands','condominio_id'));
+        return view('master.socials.create',compact('brands','condominio_id'));
     }
 
     /**
@@ -55,13 +53,14 @@ class BrandController extends Controller
 
     }
 
+
     /**
      * Display the specified resource.
      *
-     * @param  int  Brand $brand
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Brand $brand)
+    public function show($id)
     {
         //
     }
@@ -69,10 +68,10 @@ class BrandController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  Brand $brand
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Brand $brand)
+    public function edit($id)
     {
         //
     }
@@ -81,10 +80,10 @@ class BrandController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  Brand $brand
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Brand $brand)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -92,11 +91,12 @@ class BrandController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  Brand $brand
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Brand $brand)
+    public function destroy(Social $social)
     {
-        //
+        $social->delete();
+        return redirect()->route('condominios.index')->with('success', 'Condominio ' . $social->name . ' eliminado exitosamente');
     }
 }

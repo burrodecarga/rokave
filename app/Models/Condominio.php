@@ -27,4 +27,8 @@ class Condominio extends Model
     public function socials(){
         return $this->hasMany(Social::class);
     }
+
+    public function banks(){
+        return $this->hasMany(Bank::class);
+    }
 }

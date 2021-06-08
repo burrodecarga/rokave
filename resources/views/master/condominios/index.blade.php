@@ -62,9 +62,9 @@
                                      </form>
 
                                      <form
-                                        action="{{route('brands.create')}}"
+                                        action="{{route('socials.create')}}"
                                         class="btn">
-                                        @csrf
+
                                         <input type="hidden" name="condominio_id" value="{{$condominio->id}}">
 
                                         <button type="submit" class="btn btn-outline-primary">
@@ -74,6 +74,51 @@
                                         data-placement="top" title="{{__('add Social Media')}} "
                                                 ></i></button>
                                      </form>
+
+                                     <form
+                                        action="{{route('socials.index')}}"
+                                        class="btn">
+
+                                        <input type="hidden" name="condominio_id" value="{{$condominio->id}}">
+
+                                        <button type="submit" class="btn btn-outline-danger">
+                                            <i class="fa fa-at"
+                                                aria-hidden="true"
+                                                data-toggle="tooltip"
+                                        data-placement="top" title="{{__('delete Social Media')}} "
+                                                ></i></button>
+                                     </form>
+
+
+                                     {{-- //// --}}
+
+                                     <form
+                                     action="{{route('banks.create')}}"
+                                     class="btn">
+
+                                     <input type="hidden" name="condominio_id" value="{{$condominio->id}}">
+
+                                     <button type="submit" class="btn btn-outline-primary">
+                                         <i class="fa fa-building"
+                                             aria-hidden="true"
+                                             data-toggle="tooltip"
+                                     data-placement="top" title="{{__('add Bank')}} "
+                                             ></i></button>
+                                  </form>
+
+                                  <form
+                                     action="{{route('banks.index')}}"
+                                     class="btn">
+
+                                     <input type="hidden" name="condominio_id" value="{{$condominio->id}}">
+
+                                     <button type="submit" class="btn btn-outline-danger">
+                                         <i class="fa fa-building"
+                                             aria-hidden="true"
+                                             data-toggle="tooltip"
+                                     data-placement="top" title="{{__('edit Bank')}} "
+                                             ></i></button>
+                                  </form>
 
 
                                  </td>
@@ -162,11 +207,7 @@ e.preventDefault()
 }).then((result) => {
   if (result.isConfirmed) {
      this.submit()
-    // Swal.fire(
-    //   'Deleted!',
-    //   'Your file has been deleted.',
-    //   'success'
-    // )
+
   }
 })
  })

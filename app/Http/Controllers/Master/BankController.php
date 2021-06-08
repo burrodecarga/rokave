@@ -3,24 +3,19 @@
 namespace App\Http\Controllers\Master;
 
 use App\Http\Controllers\Controller;
-use App\Models\Brand;
-use App\Models\Condominio;
-use App\Models\Social;
+use App\Models\Bank;
 use Illuminate\Http\Request;
 
-class BrandController extends Controller
+class BankController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        $request->validate(['condominio_id'=>'required']);
-        $condominio = Condominio::find($request->condominio_id);
-        $socials = $condominio->socials;
-        return view('master.brands.index',compact('condominio','socials',));
+        //
     }
 
     /**
@@ -30,10 +25,9 @@ class BrandController extends Controller
      */
     public function create(Request $request)
     {
-
         $condominio_id = $request->condominio_id;
-        $brands = Brand::orderBy('name')->get();
-        return view('master.brands.create',compact('brands','condominio_id'));
+        $bank = new Bank();
+        return view('master.banks.create',compact('condominio_id','bank'));
     }
 
     /**
@@ -44,24 +38,21 @@ class BrandController extends Controller
      */
     public function store(Request $request)
     {
-      $request->validate([
-          'name'=>'required',
-          'url'  =>'required',
-          'condominio_id'  =>'required'
-      ]);
-      $social = new Social($request->all());
-      $social->save();
-      return redirect()->route('condominios.edit',$request->condominio_id)->with('success', 'Red Social ' . $social->name . ' creado exitosamente');
+      $request->validate(['ctta'=>'required','bank'=>'required','owner'=>'required','condominio_id'  =>'required']);
+      $bank = new Bank($request->all());
+      $bank->save();
+      return redirect()->route('condominios.edit',$request->condominio_id)->with('success', 'Banco ' . $bank->bank .' - ctta : '.$bank->ctta.'  creado exitosamente');
+
 
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  Brand $brand
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Brand $brand)
+    public function show($id)
     {
         //
     }
@@ -69,10 +60,10 @@ class BrandController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  Brand $brand
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Brand $brand)
+    public function edit($id)
     {
         //
     }
@@ -81,10 +72,10 @@ class BrandController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  Brand $brand
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Brand $brand)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -92,10 +83,10 @@ class BrandController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  Brand $brand
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Brand $brand)
+    public function destroy($id)
     {
         //
     }

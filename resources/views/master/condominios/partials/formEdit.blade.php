@@ -93,37 +93,38 @@
                     </span>
             </a>
             </div>
-            <div class="col-md-6">
-                <form action="{{route('brands.create')}}">
-                    <input type="hidden" name="condominio_id" value="{{$condominio->id}}">
-                    <button type="submit"> <i class="fas fa-plus-square"></i><span  class="m-auto">
-                    Nueva Red Social
-                </span></button>
-                </form>
             </div>
-
-
-
-
-        </div>
 
 
         <div class="card-body " x-show="open">
             <ul class="list-group my-4">
-                <li class="list-group-item list-group-item-success">Cras justo odio</li>
-                <li class="list-group-item">Dapibus ac facilisis in</li>
-                <li class="list-group-item">Morbi leo risus</li>
-                <li class="list-group-item">Porta ac consectetur ac</li>
-                <li class="list-group-item">Vestibulum at eros</li>
-            </ul>
-
+                @foreach ($condominio->socials as $social)
+                <li class="list-group-item list-group-item-success">{{$social->name.'  : '.$social->url}}</li>
+                @endforeach
+                </ul>
         </div>
     </div>
 
-    <div class="redes  col-12  card">
-        <div class="card-header"><i class="fas fa-money-check-alt"></i>bancos</div>
-        <div class="card-body">
+    <div class="redes  col-12  card" x-data="{open: false }">
+        <div class="card-header cursor-pointer row" role="button" @click="open = ! open"
+            @click.away="open=false">
+            <div class="col-md-6">
+                 <a class="bg-info p-2 rounded float-left">
+                     <i class="fas fa-money-check-alt" title="Ocultar/Mostrar lista"></i>
+                    <span  class="m-auto">
+                        Bancos
+                    </span>
+            </a>
+            </div>
+            </div>
 
+
+        <div class="card-body " x-show="open">
+            <ul class="list-group my-4">
+                @foreach ($condominio->banks as $bank)
+                <li class="list-group-item list-group-item-success">{{$bank->bank.'  : '.$bank->ctta}}</li>
+                @endforeach
+                </ul>
         </div>
     </div>
 
