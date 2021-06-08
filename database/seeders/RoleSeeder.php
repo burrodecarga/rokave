@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Brand;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\File;
@@ -77,6 +78,15 @@ class RoleSeeder extends Seeder
           // or may be done by chaining
           $role = Role::create(['name' => 'inhabilitado', 'area' => 'operativa']);
           //    ->givePermissionTo(['publish articles', 'unpublish articles']);
+
+          $json =File::get("database/data/redes.json");
+          $data = json_decode($json);
+          foreach ($data as $obj) {
+           $brand = new Brand();
+           $brand->name = $obj->name;
+           $brand->icon = $obj->icon;
+           $brand->save();
+          }
 
 
       }

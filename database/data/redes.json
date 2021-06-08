@@ -1,0 +1,43 @@
+[
+    {
+        "name": "Facebook   ",
+        "icon":"<i class='fab fa-facebook-f'></i>"
+    },
+    {
+        "name": "Youtube    ",
+        "icon":"<i class='fab fa-youtube'></i>"
+    },
+    {
+        "name": "WhatsApp   ",
+        "icon":"<i class='fab fa-whatsapp'></i>"
+    },
+
+    {
+        "name": "Messenger  ",
+        "icon":"<i class='fab fa-facebook-messenger'></i>"
+    },
+    {
+        "name": "WeChat     ",
+        "icon":"<i class='fab fa-weixin'></i>"
+    },
+    {
+        "name": "Instagram  ",
+        "icon":"<i class='fab fa-instagram'></i>"
+    },
+    {
+        "name": "QQ         ",
+        "icon":"<i class='fab fa-qq'></i>"
+    },
+    {
+        "name": "QZone      ",
+        "icon":"<i class='fab fa-quora'></i>"
+    },
+    {
+        "name": "Tik Tok    ",
+        "icon":"<i class='fab fa-tiktok'></i>"
+    },
+    {
+        "name": "Weibo      ",
+        "icon":"<i class='fab fa-weibo'></i>"
+    }
+]

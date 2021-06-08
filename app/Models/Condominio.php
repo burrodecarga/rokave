@@ -23,4 +23,8 @@ class Condominio extends Model
     public function administrador(){
         return $this->belongsTo(User::class,'user_id');
     }
+
+    public function socials(){
+        return $this->hasMany(Social::class);
+    }
 }

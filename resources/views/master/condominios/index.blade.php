@@ -1,4 +1,3 @@
-
 @extends('adminlte::page')
 
 @section('content')
@@ -20,61 +19,79 @@
                             </a>
                         </div>
                     </div>
-                        @include('partials.success')
-                        <table class="table table-striped table-bordered" style="width:100%" id="condominios">
-                            <thead>
-                                <tr>
-                                    <th width="50%">Condominio</th>
-                                    <th width="20%">email</th>
-                                    <th width="30%" class="text-center">{{__('Acction')}}</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($condominios as $condominio )
-                                <tr>
-                                    <td scope="row" class="text-capitalize">{{$condominio->name}} </td>
-                                    <td scope="row" class="text-capitalize">{{$condominio->email}} </td>
-                                    <td>
-                                        <a href="{{route('condominios.show',$condominio->id)}}"
-                                            class="btn btn-outline-primary text-capitalize" data-toggle="tooltip"
-                                            data-placement="top" title="{{__('show record')}} ">
+                    @include('partials.success')
+                    <table class="table table-striped table-bordered text-sm" style="width:100%" id="condominios">
+                        <thead>
+                            <tr>
+                                <th width="35%">Condominio</th>
+                                <th width="20%">email</th>
+                                <th width="20%">Administrador</th>
+                                <th width="25%" class="text-center">{{__('Acction')}}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($condominios as $condominio )
+                            <tr>
+                                <td scope="row" class="text-capitalize">{{$condominio->name}} </td>
+                                <td scope="row" class="text-capitalize">{{$condominio->email}} </td>
+                                <td scope="row" class="text-capitalize">
+                                    @if($condominio->user_id)
+                                    {{$condominio->administrador->name}}
+                                    @endif
+                                </td>
+                                <td scope="row" class="text-capitalize">
+                                    <a href="{{route('condominios.show',$condominio->id)}}"
+                                        class="btn btn-outline-primary text-capitalize" data-toggle="tooltip"
+                                        data-placement="top" title="{{__('show record')}} ">
 
-                                            <i class="fa fa-list" aria-hidden="true"></i>
-                                        </a>
-                                        <a href="{{route('condominios.edit',$condominio->id)}}"
-                                            class="btn btn-outline-success text-capitalize" data-toggle="tooltip"
-                                            data-placement="top" title="{{__('edit record')}} ">
+                                        <i class="fa fa-list" aria-hidden="true"></i>
+                                    </a>
+                                    <a href="{{route('condominios.edit',$condominio->id)}}"
+                                        class="btn btn-outline-success text-capitalize" data-toggle="tooltip"
+                                        data-placement="top" title="{{__('edit record')}} ">
 
-                                            <i class="fa fa-wrench" aria-hidden="true"></i>
-                                        </a>
+                                        <i class="fa fa-wrench" aria-hidden="true"></i>
+                                    </a>
+                                    <form id="delete-form{{$condominio->id}}"
+                                        action="{{route('condominios.destroy',$condominio->id)}}" method="POST"
+                                        class="borrar btn">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn"> <i class="fa fa-trash-alt btn btn-danger btn-outline-warnig"
+                                                aria-hidden="true"></i></button>
+                                     </form>
 
-                                        <a class="btn btn-outline-danger text-capitalize" href="#" onclick="event.preventDefault();
-                                                     document.getElementById('delete-form{{$condominio->id}}').submit();"
-                                            data-toggle="tooltip" data-placement="top" title="{{__('delete record'.$condominio->id)}} ">
+                                     <form
+                                        action="{{route('brands.create')}}"
+                                        class="btn">
+                                        @csrf
+                                        <input type="hidden" name="condominio_id" value="{{$condominio->id}}">
 
-                                            <i class="fa fa-trash" aria-hidden="true"></i>
-                                        </a>
-                                        <form id="delete-form{{$condominio->id}}" action="{{route('condominios.destroy',$condominio->id)}}"
-                                            method="POST" style="display: none;">
-                                            @csrf
-                                            @method('DELETE')
-                                        </form>
-                                    </td>
-                                </tr>
+                                        <button type="submit" class="btn btn-outline-primary">
+                                            <i class="fa fa-at"
+                                                aria-hidden="true"
+                                                data-toggle="tooltip"
+                                        data-placement="top" title="{{__('add Social Media')}} "
+                                                ></i></button>
+                                     </form>
 
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
+
+                                 </td>
+                            </tr>
+
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
 </div>
+</div>
 @stop
 
 @section('css')
-    {{-- <link rel="stylesheet" href="/css/admin_custom.css"> --}}
+{{-- <link rel="stylesheet" href="/css/admin_custom.css"> --}}
 @stop
 
 @section('js')
@@ -116,7 +133,7 @@
                 "infoFiltered": ""
             },
             "columnDefs": [{
-                "targets": [1],
+                "targets": [3],
                 "orderable": false
             }],
 
@@ -125,10 +142,36 @@
         $('label').addClass('form-inline');
         $('select, input[type="search"]').addClass('form-control input-sm');
         $('.dataTables_length').addClass('bs-select');
-    });
+
+
+
+});
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function (){
+        $('.borrar').submit(function(e){
+e.preventDefault()
+    Swal.fire({
+  title: 'Are you sure?',
+  text: "You won't be able to revert this!",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Yes, delete it!'
+}).then((result) => {
+  if (result.isConfirmed) {
+     this.submit()
+    // Swal.fire(
+    //   'Deleted!',
+    //   'Your file has been deleted.',
+    //   'success'
+    // )
+  }
+})
+ })
+    })
 
 </script>
 
 @stop
-
-
