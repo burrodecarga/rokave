@@ -7,6 +7,8 @@
 @stop
 
 @section('content')
+@include('partials.success')
+
     <p>Welcome to this beautiful admin panel.</p>
 @stop
 
@@ -16,7 +18,7 @@
 
 @section('js')
     <script>
- 
+
     </script>
 
 @stop

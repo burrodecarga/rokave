@@ -14,25 +14,29 @@
             </a>
         </div>
     </div>
-    <table>
+    <table class="mx-auto">
         <thead>
             <tr>
-                <th class="text-center text-xl">Información del Condominio</th>
+                <th class="text-center text-lg">Información del Condominio</th>
             </tr>
         </thead>
         <tbody>
             @foreach ($condominios as $condominio)
             <tr>
                 <td>
-                    <div class="col-lg-6 offset-md-3">
-                        <div class="card">
-                            @if($condominio->logo)
+                    <div class="">
+                        <div class="card" style="width: 28rem;">
+                            <div class="img">
+                                 @if($condominio->logo)
                             <img src="{{asset('storage/'.$condominio->logo)}}" class="card-img-top p-4"
                                 alt="{{$condominio->name}}">
                                 @else
-                                <img src="{{asset('assets/logo/9.png')}}" class="card-img-top p-4"
+                            <img src="{{asset('assets/logo/9.png')}}" class="card-img-top p-4"
                                 alt="rokave">
                                 @endif
+                            </div>
+
+
                             <div class="card-header">
                             </div>
                             <div class="card-body">
@@ -67,7 +71,7 @@
                                 <hr class="m-0">
                                 @foreach ($condominio->banks as $bank )
                                 <a href="#" class="inline-block"><small class="inline-block">
-                                        {{$bank->ctta. ' : '.$social->name}}</small></a><br>
+                                        {{$bank->ctta. ' : '.$bank->name}}</small></a><br>
                                 @endforeach
                                 <hr class="m-0">
 
@@ -213,22 +217,20 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="card-footer">Footer
+                            <div class="card-footer">
+                                <div class="mx-auto">
+                                    {{$condominios->links('vendor.pagination.bootstrap-4')}}
+                        </div>
                             </div>
                         </div>
                     </div>
-
                 </td>
             </tr>
             @endforeach
         </tbody>
-
     </table>
+</div>
 
-</div>
-<div class="col-lg-6 offset-md-3">
-            {{$condominios->links('vendor.pagination.bootstrap-4')}}
-</div>
 
 
 @stop

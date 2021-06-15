@@ -7,8 +7,11 @@
         @method('POST')
         <input type="hidden" name="condominio_id" value="{{$condominio_id}}">
         <div class="row bg-white p-3 rounded">
-            <h4 class="col-12 text-lg font-bold">Agregar Nueva Cuenta Bancaria</h4>
-
+            <h4 class="col-12 text-lg font-bold">Agregar Nueva Cuenta Bancaria <a href="{{route('condominios.index')}}"
+                data-toggle="tooltip"
+                data-placement="top"
+                title="{{__('Regresar')}}"
+                > <i class="fas fa-undo-alt ml-3"></i></a></h4>
 
             <div class="form-group col-6">
                 <label for="bank" class="font-weight-bold font-italic">{{__('bank')}} </label>

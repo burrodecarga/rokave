@@ -39,6 +39,15 @@ class BankController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+    public function edit(Bank $bank)
+    {
+       $condominio = $bank->condominio;
+       $condominio;
+
+        return view('master.banks.edit',compact('bank','condominio'));
+    }
+
     public function store(Request $request)
     {
       $request->validate(['ctta'=>'required','bank'=>'required','owner'=>'required','condominio_id'  =>'required']);
@@ -66,7 +75,7 @@ class BankController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    
+
     /**
      * Update the specified resource in storage.
      *

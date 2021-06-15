@@ -285,11 +285,26 @@ return [
              'url'  => 'dashboard',
              'icon' => 'fas fa-fw fa-home',
          ],
-        // [
-        //     'text' => 'change_password',
-        //     'url'  => 'admin/settings',
-        //     'icon' => 'fas fa-fw fa-lock',
-        // ],
+         [
+             'text' => 'create Symink',
+             'url'  => 'storage-link',
+             'icon' => 'fas fa-fw fa-lock',
+         ],
+
+         [
+            'text' => 'create Symink-2',
+            'url'  => 'storagelink',
+            'icon' => 'fas fa-fw fa-lock',
+        ],
+
+        [
+            'text' => 'Limpiar',
+            'url'  => 'limpiar',
+            'icon' => 'fas fa-fw fa-lock',
+        ],
+
+
+
         // // [
         //     'text'    => 'multilevel',
         //     'icon'    => 'fas fa-fw fa-share',

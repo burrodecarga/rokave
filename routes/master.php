@@ -14,6 +14,7 @@ use App\Http\Controllers\Master\UserController;
 
 use Illuminate\Support\Facades\Route;
 
+
 Route::get('', [HomeController::class,'index'])->name('master');
 Route::get('rutas', [HomeController::class,'rutas'])->name('rutas');
 
