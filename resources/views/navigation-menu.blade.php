@@ -100,8 +100,12 @@
                                 {{ __('Profile') }}
                             </x-jet-dropdown-link>
 
-                            <x-jet-dropdown-link href="{{ route('roles.index') }}">
+                            <x-jet-dropdown-link href="{{ route('master') }}">
                                 {{ __('Master') }}
+                            </x-jet-dropdown-link>
+
+                            <x-jet-dropdown-link href="{{ route('admin') }}">
+                                {{ __('Admin') }}
                             </x-jet-dropdown-link>
 
                             @if (Laravel\Jetstream\Jetstream::hasApiFeatures())

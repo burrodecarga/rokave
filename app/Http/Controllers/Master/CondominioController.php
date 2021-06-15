@@ -16,9 +16,12 @@ class CondominioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
+    //protected $paginationTheme = 'bootstrap';
     public function index()
     {
-        $condominios = Condominio::all();
+        $condominios = Condominio::paginate(1);
         $title ='List of Condominios';
         $btn ='';
         return view('master.condominios.index', compact('condominios','title','btn'));
@@ -50,7 +53,7 @@ class CondominioController extends Controller
         $condominio = Condominio::create($request->all());
 
         if ($request->file('image')) {
-            $url = $request->file('image')->store('public/logos');
+            $url = $request->file('image')->store('logos');
             //$url = Storage::put('logos', $request->file('image'));
             $condominio->logo = $url;
             $condominio->save();
@@ -111,10 +114,10 @@ class CondominioController extends Controller
             if ($condominio->logo) {
                 Storage::delete($condominio->logo);
          //       $url = Storage::put('logos', $request->file('image'));
-                $url = $request->file('image')->store('public/logos');
+                $url = $request->file('image')->store('logos');
                 $condominio->logo =$url;
             }else{
-                $url = $request->file('image')->store('public/logos');
+                $url = $request->file('image')->store('logos');
                 //$url = Storage::put('logos', $request->file('image'));
                 $condominio->logo = $url;
             }

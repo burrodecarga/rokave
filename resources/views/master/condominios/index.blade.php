@@ -3,175 +3,234 @@
 @section('content')
 
 <div class="container">
+    @include('partials.success')
+
     <div class="row">
-        <div class="col-12 mx-auto">
-            <div class="card card-table" style="width:100%">
-                <div class="card-header card-header-table">
-                    <h5 class="display-6 text-center mt-2 p-0 text-uppercase text-primary">{{__($title)}} </h5>
-                </div>
-                <div class="card-body card-body-table">
-                    <div class="row">
-                        <div class="col d-flex flex-row-reverse mr-4">
-                            <a href="{{route('condominios.create')}}"
-                                class="btn btn-outline-primary mb-2 float-left text-capitalize btn-new">
-                                <i class="fa fa-plus-circle" aria-hidden="true"></i>
-                                {{__('new record')}}
-                            </a>
-                        </div>
-                    </div>
-                    @include('partials.success')
-                    <table class="table table-striped table-bordered text-sm" style="width:100%" id="condominios">
-                        <thead>
-                            <tr>
-                                <th width="35%">Condominio</th>
-                                <th width="20%">email</th>
-                                <th width="20%">Administrador</th>
-                                <th width="25%" class="text-center">{{__('Acction')}}</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($condominios as $condominio )
-                            <tr>
-                                <td scope="row" class="text-capitalize">{{$condominio->name}} </td>
-                                <td scope="row" class="text-capitalize">{{$condominio->email}} </td>
-                                <td scope="row" class="text-capitalize">
-                                    @if($condominio->user_id)
-                                    {{$condominio->administrador->name}}
-                                    @endif
-                                </td>
-                                <td  class="text-center">
-
-
-                                    <a href="{{route('condominios.show',$condominio->id)}}"
-                                        class="btn btn-outline-primary text-capitalize" data-toggle="tooltip"
-                                        data-placement="top" title="{{__('show record')}} ">
-
-                                        <i class="fa fa-list" aria-hidden="true"></i>
-                                    </a>
-                                    <a href="{{route('condominios.edit',$condominio->id)}}"
-                                        class="btn btn-outline-success text-capitalize" data-toggle="tooltip"
-                                        data-placement="top" title="{{__('edit record')}} ">
-
-                                        <i class="fa fa-wrench" aria-hidden="true"></i>
-                                    </a>
-                                    <form id="delete-form{{$condominio->id}}"
-                                        action="{{route('condominios.destroy',$condominio->id)}}" method="POST"
-                                        class="borrar btn">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn"> <i class="fa fa-trash-alt btn btn-danger btn-outline-warnig"
-                                                aria-hidden="true"></i></button>
-                                     </form>
-                                     <hr>
-
-                                     <form
-                                        action="{{route('socials.create')}}"
-                                        class="btn">
-
-                                        <input type="hidden" name="condominio_id" value="{{$condominio->id}}">
-
-                                        <button type="submit" class="btn btn-outline-primary">
-                                            <i class="fa fa-at"
-                                                aria-hidden="true"
-                                                data-toggle="tooltip"
-                                        data-placement="top" title="{{__('add Social Media')}} "
-                                                ></i></button>
-                                     </form>
-
-                                     <form
-                                        action="{{route('socials.index')}}"
-                                        class="btn">
-
-                                        <input type="hidden" name="condominio_id" value="{{$condominio->id}}">
-
-                                        <button type="submit" class="btn btn-outline-danger">
-                                            <i class="fa fa-at"
-                                                aria-hidden="true"
-                                                data-toggle="tooltip"
-                                        data-placement="top" title="{{__('delete Social Media')}} "
-                                                ></i></button>
-                                     </form>
-
-                                     <hr>
-
-                                     <form
-                                     action="{{route('banks.create')}}"
-                                     class="btn">
-
-                                     <input type="hidden" name="condominio_id" value="{{$condominio->id}}">
-
-                                     <button type="submit" class="btn btn-outline-primary">
-                                         <i class="fa fa-comments-dollar"
-                                             aria-hidden="true"
-                                             data-toggle="tooltip"
-                                     data-placement="top" title="{{__('add Bank')}} "
-                                             ></i></button>
-                                  </form>
-
-                                  <form
-                                     action="{{route('banks.index')}}"
-                                     class="btn">
-
-                                     <input type="hidden" name="condominio_id" value="{{$condominio->id}}">
-
-                                     <button type="submit" class="btn btn-outline-danger">
-                                         <i class="fa fa-comments-dollar"
-                                             aria-hidden="true"
-                                             data-toggle="tooltip"
-                                     data-placement="top" title="{{__('edit Banks')}} "
-                                             ></i></button>
-                                  </form>
-
-                                  <hr>
-
-                                  <form
-                                     action="{{route('interests.create')}}"
-                                     class="btn">
-
-                                     <input type="hidden" name="condominio_id" value="{{$condominio->id}}">
-
-                                     <button type="submit" class="btn btn-outline-primary">
-                                         <i class="fa fa-chart-bar"
-                                             aria-hidden="true"
-                                             data-toggle="tooltip"
-                                     data-placement="top" title="{{__('add interest')}} "
-                                             ></i></button>
-                                  </form>
-
-                                  <form
-                                     action="{{route('interests.index')}}"
-                                     class="btn">
-
-                                     <input type="hidden" name="condominio_id" value="{{$condominio->id}}">
-
-                                     <button type="submit" class="btn btn-outline-danger">
-                                         <i class="fa fa-chart-bar"
-                                             aria-hidden="true"
-                                             data-toggle="tooltip"
-                                     data-placement="top" title="{{__('edit interests')}} "
-                                             ></i></button>
-                                  </form>
-                                  <hr>
-                                  <a href="{{route('condominios-apartments.index',$condominio)}}"
-                                    class="btn btn-outline-success text-capitalize" data-toggle="tooltip"
-                                    data-placement="top" title="{{__('List of Apartments')}} ">
-
-                                    <i class="fa fa-boxes" aria-hidden="true"></i>
-                                </a>
-
-
-                                 </td>
-                            </tr>
-
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+        <div class="col d-flex flex-row-reverse mr-4">
+            <a href="{{route('condominios.create')}}"
+                class="btn btn-outline-primary mb-2 float-left text-capitalize btn-new">
+                <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                {{__('new record')}}
+            </a>
         </div>
     </div>
+    <table>
+        <thead>
+            <tr>
+                <th class="text-center text-xl">Información del Condominio</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($condominios as $condominio)
+            <tr>
+                <td>
+                    <div class="col-lg-6 offset-md-3">
+                        <div class="card">
+                            @if($condominio->logo)
+                            <img src="{{asset('storage/'.$condominio->logo)}}" class="card-img-top p-4"
+                                alt="{{$condominio->name}}">
+                                @else
+                                <img src="{{asset('assets/logo/9.png')}}" class="card-img-top p-4"
+                                alt="rokave">
+                                @endif
+                            <div class="card-header">
+                            </div>
+                            <div class="card-body">
+                                <h5>{{$condominio->name}}
+                                    <span class="text-sm d-block font-italic">{{$condominio->rut}}</span>
+                                </h5>
+
+                                <hr class="m-0">
+                                <h6>{{$condominio->address}}</h6>
+                                <hr class="m-0">
+                                <h6 class="text-sm my-1">{{$condominio->phone}}<span> |
+                                        {{$condominio->mobil}}</span></h6>
+                                <hr class="m-0">
+                                <h6 class="text-sm my-1">{{$condominio->email}}</h6>
+                                <hr class="m-0">
+                                @if ($condominio->aministrador)
+                                <h6 class="text-sm my-1">Admin : <span> |
+                                        {{$condominio->administrador}}</span></h6>
+                                <hr class="m-0">
+                                @else
+                                <h6 class="text-sm my-1">Admin : <span> |
+                                        No tiene administrador</span></h6>
+                                <hr class="m-0">
+
+                                @endif
+                                <hr class="m-0">
+                                @foreach ($condominio->socials as $social )
+                                <a href="{{$social->url}}" class="inline-block"><small class="inline-block">
+                                        {{$social->name. ' : '.$social->url}}</small></a><br>
+                                @endforeach
+                                <hr class="m-0">
+                                <hr class="m-0">
+                                @foreach ($condominio->banks as $bank )
+                                <a href="#" class="inline-block"><small class="inline-block">
+                                        {{$bank->ctta. ' : '.$social->name}}</small></a><br>
+                                @endforeach
+                                <hr class="m-0">
+
+                                <hr class="m-0">
+                                @foreach ($condominio->interests as $interest )
+                                <a href="#" class="inline-block"><small class="inline-block">
+                                        interes : {{$interest->value. ' % : Fecha : '.$interest->date}}</small></a><br>
+                                @endforeach
+                                <hr class="m-0">
+
+                                <h5 class="font-italic">operaciones</h5>
+                                {{-- condominio --}}
+                                <div class="mx-auto text-center bg-secondary rounded my-1">
+                                    <div class="d-flex justify-content-around align-items-center">
+                                        <h6 class="mx-auto">Condominio:</h6>
+                                        <span class="bg-white p-2 mx-auto my-1 rounded">
+
+
+                                            <a href="{{route('condominios.edit',$condominio->id)}}"
+                                                class="btn btn-outline-success text-capitalize" data-toggle="tooltip"
+                                                data-placement="top" title="{{__('edit record')}} ">
+
+                                                <i class="fa fa-wrench" aria-hidden="true"></i>
+                                            </a>
+                                            <form id="delete-form{{$condominio->id}}"
+                                                action="{{route('condominios.destroy',$condominio->id)}}" method="POST"
+                                                class="borrar btn">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn" data-toggle="tooltip"
+                                                    data-placement="top" title="{{__('delete record')}} "
+                                                    title="delete Record">
+                                                    <i class="fa fa-trash-alt border-0 btn btn-danger "
+                                                        aria-hidden="true"></i></button>
+                                            </form>
+                                        </span>
+                                    </div>
+                                </div>
+
+                                {{-- Redes sociales --}}
+                                <div class="mx-auto text-center bg-secondary rounded my-1">
+                                    <div class="d-flex justify-content-around align-items-center">
+                                        <h6 class="mx-auto">Social Media Inf:</h6>
+                                        <span class="bg-white p-2 mx-auto my-1 rounded">
+                                            <form action="{{route('socials.create')}}" class="btn">
+
+                                                <input type="hidden" name="condominio_id" value="{{$condominio->id}}">
+
+                                                <button type="submit" class="btn btn-outline-primary">
+                                                    <i class="fa fa-at" aria-hidden="true" data-toggle="tooltip"
+                                                        data-placement="top"
+                                                        title="{{__('add Social Media')}} "></i></button>
+                                            </form>
+
+                                            <form action="{{route('socials.index')}}" class="btn">
+
+                                                <input type="hidden" name="condominio_id" value="{{$condominio->id}}">
+
+                                                <button type="submit" class="btn btn-outline-danger">
+                                                    <i class="fa fa-at" aria-hidden="true" data-toggle="tooltip"
+                                                        data-placement="top"
+                                                        title="{{__('delete Social Media')}} "></i></button>
+                                            </form>
+                                        </span>
+                                    </div>
+                                </div>
+
+                                {{-- Bancos --}}
+
+                                <div class="mx-auto text-center bg-secondary rounded my-1">
+
+                                    <div class="d-flex justify-content-around align-items-center">
+                                        <h6 class="mx-auto">Cttas Bancarias:</h6>
+                                        <span class="bg-white p-2 mx-auto my-1 rounded">
+                                            <form action="{{route('banks.create')}}" class="btn">
+
+                                                <input type="hidden" name="condominio_id" value="{{$condominio->id}}">
+
+                                                <button type="submit" class="btn btn-outline-primary">
+                                                    <i class="fa fa-comments-dollar" aria-hidden="true"
+                                                        data-toggle="tooltip" data-placement="top"
+                                                        title="{{__('add Bank')}} "></i></button>
+                                            </form>
+
+                                            <form action="{{route('banks.index')}}" class="btn">
+
+                                                <input type="hidden" name="condominio_id" value="{{$condominio->id}}">
+
+                                                <button type="submit" class="btn btn-outline-danger">
+                                                    <i class="fa fa-comments-dollar" aria-hidden="true"
+                                                        data-toggle="tooltip" data-placement="top"
+                                                        title="{{__('edit Banks')}} "></i></button>
+                                            </form>
+
+                                        </span>
+                                    </div>
+                                </div>
+
+                                {{-- Intereses--}}
+
+                                <div class="mx-auto text-center bg-secondary rounded my-1">
+
+                                    <div class="d-flex justify-content-around align-items-center">
+                                        <h6 class="mx-auto">Intereses de Mora:</h6>
+                                        <span class="bg-white p-2 mx-auto my-1 rounded">
+                                            <form action="{{route('interests.create')}}" class="btn">
+
+                                                <input type="hidden" name="condominio_id" value="{{$condominio->id}}">
+
+                                                <button type="submit" class="btn btn-outline-primary">
+                                                    <i class="fa fa-chart-bar" aria-hidden="true" data-toggle="tooltip"
+                                                        data-placement="top"
+                                                        title="{{__('add interest')}} "></i></button>
+                                            </form>
+
+                                            <form action="{{route('interests.index')}}" class="btn">
+
+                                                <input type="hidden" name="condominio_id" value="{{$condominio->id}}">
+
+                                                <button type="submit" class="btn btn-outline-danger">
+                                                    <i class="fa fa-chart-bar" aria-hidden="true" data-toggle="tooltip"
+                                                        data-placement="top"
+                                                        title="{{__('edit interests')}} "></i></button>
+                                            </form>
+                                        </span>
+                                    </div>
+                                </div>
+
+                                {{--apartamentos---}}
+
+                                <div class="mx-auto text-center bg-secondary rounded my-1">
+
+                                    <div class="d-flex justify-content-around align-items-center">
+                                        <h6 class="mx-auto">Apartamentos:</h6>
+                                        <span class="bg-white p-2 mx-auto my-1 rounded">
+                                            <a href="{{route('condominios-apartments.index',$condominio)}}"
+                                                class="btn btn-outline-success text-capitalize" data-toggle="tooltip"
+                                                data-placement="top" title="{{__('List of Apartments')}} ">
+
+                                                <i class="fa fa-boxes" aria-hidden="true"></i>
+                                            </a>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">Footer
+                            </div>
+                        </div>
+                    </div>
+
+                </td>
+            </tr>
+            @endforeach
+        </tbody>
+
+    </table>
+
 </div>
+<div class="col-lg-6 offset-md-3">
+            {{$condominios->links('vendor.pagination.bootstrap-4')}}
 </div>
+
+
 @stop
 
 @section('css')
@@ -202,7 +261,7 @@
                     "first": "Primero",
                 },
                 "lengthMenu": "Mostrar  <select class='custom-select custom-select-sm'>" +
-                    "<option value='5'>5</option>" +
+                    "<option value='-1'>1</option>" +
                     "<option value='10'>10</option>" +
                     "<option value='15'>15</option>" +
                     "<option value='20'>20</option>" +
@@ -219,8 +278,8 @@
                 "infoFiltered": ""
             },
             "columnDefs": [{
-                "targets": [3],
-                "orderable": false
+                "targets": [0],
+                "orderable": true
             }],
 
         });

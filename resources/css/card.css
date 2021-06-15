@@ -1,0 +1,4 @@
+.edw-card{
+    @apply bg-white rounded shadow-md overflow-hidden;
+}
+
