@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('', [HomeController::class,'index'])->name('master');
 Route::get('rutas', [HomeController::class,'rutas'])->name('rutas');
 
+
 Route::resource('roles', RoleController::class)->names('roles');
 Route::resource('permissions', PermissionController::class)->names('permissions');
 Route::resource('users', UserController::class)->names('users');

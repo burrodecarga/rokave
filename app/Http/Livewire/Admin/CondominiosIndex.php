@@ -6,8 +6,13 @@ use Livewire\Component;
 
 class CondominiosIndex extends Component
 {
+
+
     public function render()
     {
-        return view('livewire.admin.condominios-index');
+        $condominios = auth()->user()->condominios;
+
+
+        return view('livewire.admin.condominios-index', ['condominios'=>$condominios]);
     }
 }

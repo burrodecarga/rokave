@@ -14,7 +14,7 @@
                                 </div>
                             </div>
                 </div>
-                <div class="card-body" x-data="{open:false}">
+                <div class="card-body" x-data="{open:true}">
                     <h4 role="button" class="bg-primary p-2 rounded cursor-pointer" @click="open = !open"  >
 
                         @if ("this.show == true")

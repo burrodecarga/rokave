@@ -290,18 +290,23 @@ return [
              'url'  => 'storage-link',
              'icon' => 'fas fa-fw fa-lock',
          ],
-
          [
             'text' => 'create Symink-2',
             'url'  => 'storagelink',
             'icon' => 'fas fa-fw fa-lock',
         ],
-
         [
             'text' => 'Limpiar',
             'url'  => 'limpiar',
             'icon' => 'fas fa-fw fa-lock',
         ],
+        [
+            'text' => 'admin',
+            'url'  => 'gestion',
+            'icon' => 'fas fa-fw fa-lock',
+        ],
+
+
 
 
 

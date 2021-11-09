@@ -82,7 +82,7 @@
 </div>
 
 <div class="row col-12 mx-auto">
-    <div class="redes  col-12  card" x-data="{open: false }">
+    <div class="redes  col-12  card" x-data="{open: true }">
         <div class="card-header cursor-pointer row" role="button" @click="open = ! open"
             @click.away="open=false">
             <div class="col-md-6">
@@ -105,7 +105,7 @@
         </div>
     </div>
 
-    <div class="redes  col-12  card" x-data="{open: false }">
+    <div class="redes  col-12  card" x-data="{open: true }">
         <div class="card-header cursor-pointer row" role="button" @click="open = ! open"
             @click.away="open=false">
             <div class="col-md-6">
@@ -128,7 +128,7 @@
         </div>
     </div>
 
-    <div class="redes  col-12  card" x-data="{open: false }">
+    <div class="redes  col-12  card" x-data="{open: true }">
         <div class="card-header cursor-pointer row" role="button" @click="open = ! open"
             @click.away="open=false">
             <div class="col-md-6">

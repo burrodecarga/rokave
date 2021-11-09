@@ -9,18 +9,22 @@ use Spatie\Permission\Models\Permission;
 
 class HomeController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         return view('master.index');
     }
 
-    public function rutas(){
+    public function rutas()
+    {
         $routeList = Route::getRoutes();
 
-foreach ($routeList as $value)
-{
+        foreach ($routeList as $value) {
 
-    echo $value->uri().'  -  '. $value->getName().'<br>';
-
+            echo $value->uri() . '  -  ' . $value->getName() . '<br>';
+        }
     }
+
+    public function gestion(){
+        return 'xx';
     }
 }

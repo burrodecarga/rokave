@@ -79,6 +79,8 @@ class RoleSeeder extends Seeder
           $role = Role::create(['name' => 'inhabilitado', 'area' => 'operativa']);
           //    ->givePermissionTo(['publish articles', 'unpublish articles']);
 
+          $role = Role::create(['name' => 'admin', 'area' => 'operativa']);
+
           $json =File::get("database/data/redes.json");
           $data = json_decode($json);
           foreach ($data as $obj) {
